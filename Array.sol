@@ -16,9 +16,6 @@ contract Storage {
     uint256[3] balances = [1, 2, 3];
 
 
- 
-
-    
 
     error InvalidIndex(uint index, uint array_size);
     /**
@@ -39,12 +36,34 @@ contract Storage {
          if(_index < dynamic_registry.length) { 
              return dynamic_registry[_index];
              
-        }else{
-            revert("invalid Index");
-        }
+         }else{
+             revert("invalid Index");
+         }
+
+         assert(_index<dynamic_registry.length);
         
     }
 
+
+    function getDynamicSize() public view returns (uint){
+        return dynamic_registry.length;
+    }
+    
+
+    function insertDynamic(address val) public{
+         dynamic_registry.push(val);
+        
+    }
+   function insertDynamic2(address val) public{
+         dynamic_registry.push()=val;
+    }
+
+    function dynamicPop() public{
+         dynamic_registry.pop();
+    }
+
+//0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db
+// 0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c
 
     function getArray() public view returns(address[] memory)
    {
@@ -52,20 +71,17 @@ contract Storage {
    }
 
 
-   function f(uint len) public pure {
-        uint[] memory a = new uint[](7);
-        bytes memory b = new bytes(len);
-        assert(a.length == 7);
-        assert(b.length == len);
-        a[6] = 8;
-    }
+
 
 
      function f(uint len) public pure {
         uint[] memory a = new uint[](7);
         bytes memory b = new bytes(len);
+
+
         assert(a.length == 7);
         assert(b.length == len);
+
         a[6] = 8;
     }
 }
